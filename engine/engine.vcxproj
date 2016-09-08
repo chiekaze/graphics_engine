@@ -78,17 +78,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\ElapsedTimer.h" />
+    <ClInclude Include="..\include\GraphicsSystem.h" />
     <ClInclude Include="..\include\Object.h" />
+    <ClInclude Include="..\include\OpenGLES2GraphicsSystem.h" />
     <ClInclude Include="..\include\Ref.h" />
-    <ClInclude Include="Window.h" />
+    <ClInclude Include="..\include\Win32Window.h" />
+    <ClInclude Include="..\include\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\include\Ref.inl" />
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\ElapsedTimer.cpp" />
+    <ClCompile Include="..\source\GraphicsSystem.cpp" />
     <ClCompile Include="..\source\Object.cpp" />
+    <ClCompile Include="..\source\OpenGLES2GraphicsSystem.cpp" />
+    <ClCompile Include="..\source\Win32Window.cpp" />
+    <ClCompile Include="..\source\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

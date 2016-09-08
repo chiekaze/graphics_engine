@@ -23,7 +23,6 @@
 #ifndef OBJECT_H_
 #define OBJECT_H_
 
-
 #include <assert.h>
 
 namespace engine
@@ -90,10 +89,7 @@ private:
 	Object& operator=( const Object& );
 };
 
-
 }
-
-
 
 #endif // OBJECT_H_
 
