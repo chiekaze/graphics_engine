@@ -1,5 +1,5 @@
-#ifndef GRAPHICS_SYSTEM_H
-#define GRAPHICS_SYSTEM_H
+#ifndef GRAPHICS_SYSTEM_H_
+#define GRAPHICS_SYSTEM_H_
 
 #include <Object.h>
 
@@ -9,7 +9,7 @@ namespace engine
 	{
 	public:
 		GraphicsSystem();
-		virtual~GraphicsSystem();
+		~GraphicsSystem();
 	};
 }
 

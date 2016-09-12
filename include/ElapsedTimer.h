@@ -72,7 +72,3 @@ private:
 }
 
 #endif // ELAPSED_TIMER_H_
-
-
-
-

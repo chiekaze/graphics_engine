@@ -2,6 +2,7 @@
 #define OPENGLES2_GRAPHICS_SYSTEM_H_
 
 #include <GraphicsSystem.h>
+#include <Ref.h>
 
 namespace engine
 {
@@ -9,7 +10,8 @@ namespace engine
 	{
 	public:
 		OpenGLES2GraphicsSystem();
-		virtual~OpenGLES2GraphicsSystem();
+		~OpenGLES2GraphicsSystem();
 	};
 }
+
 #endif;

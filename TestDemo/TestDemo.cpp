@@ -1,11 +1,9 @@
 // TestDemo.cpp : Defines the entry point for the console application.
 //
+#include "stdafx.h"
+#include <Win32Window.h>
+#include <Ref.h>
 
-#include "Object.h"
-#include "Ref.h"
-#include "ElapsedTimer.h"
-#include <iostream>
-#include <Windows.h>
 
 //K‰ytet‰‰n engine -namespacea
 using namespace engine;
@@ -22,7 +20,7 @@ using namespace engine;
 //	return a;
 //}
 
-int main()
+int _tmain(int argc, _TCHAR* argv[])
 {
 	//engine::Ref<Object> obj = new Object();
 	//
@@ -34,7 +32,18 @@ int main()
 	//float deltaTime = timer.getTime();
 
 	//printf("%d, deltaTime=%2.2f\n", a, deltaTime);
-	
+
+	int w = 640;
+	int h = 480;
+
+	printf("Application create window (%d, %d)\n", w, h);
+
+	engine::Ref<engine::Win32Window> window = new engine::Win32Window(w, h, L"muh wundow");
+
+	while (window->updateMessages())
+	{
+		printf("Window update okay!\n");
+	}
 
 	return 0;
 }

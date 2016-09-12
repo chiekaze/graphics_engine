@@ -9,7 +9,7 @@ namespace engine
 	{
 	public:
 		Window();
-		virtual ~Window();
+		~Window();
 	};
 }
 

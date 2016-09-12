@@ -132,4 +132,3 @@ inline bool operator !=( Type* lhs, Ref<Type> rhs );
 
 #endif // REF_H_
 
-
