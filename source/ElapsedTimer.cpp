@@ -138,5 +138,3 @@ float ElapsedTimer::getTime() const
 
 }
 
-
-

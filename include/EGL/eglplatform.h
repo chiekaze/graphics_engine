@@ -128,7 +128,7 @@ typedef void *EGLNativePixmapType;
 #define NativePixmapType  void *
 */
 
-#elif defined(__APPLE__) || defined(__linux__)
+#elif defined(__unix__) || defined(__linux__)
 
 /* X11 (tentative)  */
 #include <X11/Xlib.h>

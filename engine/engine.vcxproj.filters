@@ -44,6 +44,7 @@
     <None Include="..\include\Ref.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\ElapsedTimer.cpp">

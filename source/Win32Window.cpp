@@ -14,7 +14,7 @@ namespace engine
 		case WM_PAINT:
 		{
 			Win32Window * esContext = (Win32Window*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
-			ValidateRect(esContext->getNativeHandle(), NULL);
+			ValidateRect(esContext->getNativeWindow(), NULL);
 		}
 		break;
 
@@ -38,7 +38,8 @@ namespace engine
 		return lRet;	
 	}
 
-	Win32Window::Win32Window(int width, int height, const std::wstring& title) : Window(), m_hwnd(NULL), m_active(false)
+	Win32Window::Win32Window(int width, int height, const std::wstring& title) : 
+		Window(), m_hwnd(NULL), m_active(false)
 	{ 
 		WNDCLASS wndClass = { 0 };
 		DWORD wStyle = 0;
@@ -112,7 +113,7 @@ namespace engine
 
 		else
 		{
-			SendMessage(getNativeHandle(), WM_PAINT, 0, 0);
+			SendMessage(getNativeWindow(), WM_PAINT, 0, 0);
 		}
 
 		return m_active;

@@ -13,11 +13,16 @@ namespace engine
 		Win32Window(int width, int height, const std::wstring& title);
 		~Win32Window();
 
-		HWND getNativeHandle() const
+		virtual EGLNativeDisplayType getNativeDisplay() const
+		{
+			return GetDC(getNativeWindow());
+		}
+
+		virtual EGLNativeWindowType getNativeWindow() const
 		{
 			return m_hwnd;
 		}
-		
+
 		bool updateMessages();
 
 	private:

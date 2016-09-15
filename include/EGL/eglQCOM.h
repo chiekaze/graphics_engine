@@ -6,9 +6,6 @@
 #ifndef __eglQCOM_h__
 #define __eglQCOM_h__
 
-// sraut@qti.qualcomm.com: Keeping this file for legacy reasons
-// refer Jira ACGSDK-745 for more information: https://jira.qualcomm.com/jira/browse/ACGSDK-745
-
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
 
@@ -184,10 +181,6 @@ typedef EGLBoolean (EGLAPIENTRYP PFNEGLQUERYIMAGEQUALCOMMPROC) ( EGLDisplay dpy,
 #define EGL_FORMAT_ARGB_4444_AMD                        0x312C
 #define EGL_FORMAT_ARGB_1555_AMD                        0x312D
 #define EGL_FORMAT_XRGB_1555_AMD                        0x312E
-
-//Added for Powerlift Testing
-#define EGL_FORMAT_NV12_QCOM            0x31C2
-
 // 0x312F unused yet.
 #endif
 

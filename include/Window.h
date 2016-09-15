@@ -2,6 +2,7 @@
 #define WINDOW_H_
 
 #include <Object.h>
+#include <EGL/eglplatform.h>
 
 namespace engine
 {
@@ -10,6 +11,9 @@ namespace engine
 	public:
 		Window();
 		~Window();
+
+		virtual EGLNativeDisplayType getNativeDisplay() const = 0;
+		virtual EGLNativeWindowType getNativeWindow() const = 0;
 	};
 }
 

@@ -4,13 +4,27 @@
 #include <GraphicsSystem.h>
 #include <Ref.h>
 
+#include <GLES2/gl2.h>
+#include <EGL/egl.h>
+
 namespace engine
 {
-	class OpenGLES2GraphicsSystem : public GraphicsSystem
+	class Window;
+
+	class OpenGLES2GraphicsSystem : 
+		public GraphicsSystem
 	{
 	public:
-		OpenGLES2GraphicsSystem();
+		OpenGLES2GraphicsSystem(Window* window);
 		~OpenGLES2GraphicsSystem();
+
+	private:
+		engine::Ref<Window> m_window;
+		bool m_active;
+
+		EGLDisplay m_eglDisplay;
+		EGLContext m_eglContext;
+		EGLSurface m_eglSurface;
 	};
 }
 
