@@ -1,4 +1,6 @@
 #include <Win32Window.h>
+#include <Application.h>
+#include <GraphicsSystem.h>
 
 namespace engine
 {
@@ -13,8 +15,10 @@ namespace engine
 			
 		case WM_PAINT:
 		{
-			Win32Window * esContext = (Win32Window*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
-			ValidateRect(esContext->getNativeWindow(), NULL);
+			GraphicsSystem* graphicsSystem();
+			Win32Window* window = (Win32Window*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
+			window->getApplication()->Render(window, graphicsSystem());
+			ValidateRect(window->getNativeWindow(), NULL);
 		}
 		break;
 
@@ -39,7 +43,10 @@ namespace engine
 	}
 
 	Win32Window::Win32Window(int width, int height, const std::wstring& title) : 
-		Window(), m_hwnd(NULL), m_active(false)
+		m_hwnd(NULL), 
+		m_active(false),
+		m_width(width),
+		m_height(height)
 	{ 
 		WNDCLASS wndClass = { 0 };
 		DWORD wStyle = 0;
@@ -91,6 +98,16 @@ namespace engine
 
 	Win32Window::~Win32Window()
 	{
+	}
+
+	int Win32Window::getWidth()
+	{
+		return m_width;
+	}
+
+	int Win32Window::getHeight()
+	{
+		return m_height;
 	}
 
 	bool Win32Window::updateMessages()

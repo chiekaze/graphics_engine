@@ -69,4 +69,9 @@ namespace engine
 	OpenGLES2GraphicsSystem::~OpenGLES2GraphicsSystem()
 	{
 	}
+
+	void OpenGLES2GraphicsSystem::swapBuffers()
+	{
+		eglSwapBuffers(m_eglDisplay, m_eglSurface);
+	}
 }

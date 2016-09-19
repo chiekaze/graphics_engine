@@ -10,6 +10,8 @@ namespace engine
 	public:
 		GraphicsSystem();
 		~GraphicsSystem();
+
+		virtual void swapBuffers() = 0;
 	};
 }
 

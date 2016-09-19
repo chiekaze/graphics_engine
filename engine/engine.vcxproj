@@ -77,6 +77,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\Application.h" />
     <ClInclude Include="..\include\ElapsedTimer.h" />
     <ClInclude Include="..\include\GraphicsSystem.h" />
     <ClInclude Include="..\include\Object.h" />
@@ -87,9 +88,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\include\Ref.inl" />
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\source\Application.cpp" />
     <ClCompile Include="..\source\ElapsedTimer.cpp" />
     <ClCompile Include="..\source\GraphicsSystem.cpp" />
     <ClCompile Include="..\source\Object.cpp" />

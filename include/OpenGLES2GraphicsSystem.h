@@ -11,12 +11,13 @@ namespace engine
 {
 	class Window;
 
-	class OpenGLES2GraphicsSystem : 
-		public GraphicsSystem
+	class OpenGLES2GraphicsSystem : public GraphicsSystem
 	{
 	public:
 		OpenGLES2GraphicsSystem(Window* window);
 		~OpenGLES2GraphicsSystem();
+
+		virtual void swapBuffers();
 
 	private:
 		engine::Ref<Window> m_window;
