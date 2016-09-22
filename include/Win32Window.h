@@ -28,7 +28,7 @@ namespace engine
 
 		virtual int getWidth();
 		virtual int getHeight();
-
+		
 		bool updateMessages();
 
 	private:

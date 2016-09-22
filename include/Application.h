@@ -15,7 +15,7 @@ namespace engine
 		Application();
 		~Application();
 
-		void Update(float deltaTime);
+		void Update(/*float deltaTime*/);
 		void Render(Window* window, GraphicsSystem* graphicsSystem);
 
 	private:

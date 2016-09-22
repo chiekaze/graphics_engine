@@ -15,12 +15,14 @@ namespace engine
 			
 		case WM_PAINT:
 		{
-			GraphicsSystem* graphicsSystem();
 			Win32Window* window = (Win32Window*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
-			window->getApplication()->Render(window, graphicsSystem());
+			
+			//window->getApplication()->Update();
+			window->getApplication()->Render(window, window->getGraphicsSystem());
+
 			ValidateRect(window->getNativeWindow(), NULL);
 		}
-		break;
+			break;
 
 		case WM_DESTROY:
 			PostQuitMessage(0);
@@ -32,7 +34,7 @@ namespace engine
 			Win32Window * esContext = (Win32Window*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
 			GetCursorPos(&point);
 		}
-		break;
+			break;
 
 		default:
 			lRet = DefWindowProc(hWnd, uMsg, wParam, lParam);
@@ -99,12 +101,11 @@ namespace engine
 	Win32Window::~Win32Window()
 	{
 	}
-
+	
 	int Win32Window::getWidth()
 	{
 		return m_width;
 	}
-
 	int Win32Window::getHeight()
 	{
 		return m_height;

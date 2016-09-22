@@ -23,9 +23,10 @@ namespace engine
 		engine::Ref<Window> m_window;
 		bool m_active;
 
-		EGLDisplay m_eglDisplay;
 		EGLContext m_eglContext;
-		EGLSurface m_eglSurface;
+
+		EGLDisplay m_eglDisplay;
+		EGLSurface m_eglSurface;	
 	};
 }
 

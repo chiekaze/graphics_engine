@@ -13,7 +13,7 @@ namespace engine
 	{
 	public:
 		Window();
-		Window(Application* app, GraphicsSystem* graphicsSystem);
+		Window(Application* app, GraphicsSystem* graphics);
 		~Window();
 
 		virtual EGLNativeDisplayType getNativeDisplay() const = 0;
@@ -23,14 +23,14 @@ namespace engine
 		virtual int getHeight() = 0;
 
 		void setApplication(Application* app);
-		void setGraphics(GraphicsSystem* graphicsSystem);
+		void setGraphics(GraphicsSystem* graphics);
 
 		Application* getApplication() const;
 		GraphicsSystem* getGraphicsSystem() const;
 
 	private:
 		Application* m_app;
-		GraphicsSystem* m_graphicsSystem;
+		GraphicsSystem* m_graphics;
 	};
 }
 
