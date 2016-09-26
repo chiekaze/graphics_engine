@@ -3,8 +3,9 @@
 
 namespace engine
 {
-	OpenGLES2GraphicsSystem::OpenGLES2GraphicsSystem(Window* window) : 
-		GraphicsSystem(), m_window(window), m_active(false)
+	OpenGLES2GraphicsSystem::OpenGLES2GraphicsSystem(Window* window) : GraphicsSystem(), 
+		m_window(window), 
+		m_active(false)
 	{
 		assert(m_window != 0);
 

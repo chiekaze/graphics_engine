@@ -3,7 +3,6 @@
 
 #include <Object.h>
 
-
 namespace engine
 {
 	class Window;
@@ -15,8 +14,8 @@ namespace engine
 		Application();
 		~Application();
 
-		void Update(/*float deltaTime*/);
-		void Render(Window* window, GraphicsSystem* graphicsSystem);
+		bool update(float deltaTime);
+		void render(Window* window, GraphicsSystem* graphicsSystem);
 
 	private:
 		float m_totalTime;

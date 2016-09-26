@@ -7,9 +7,6 @@
 
 namespace engine
 {
-	class Application;
-	class GraphicsSystem;
-
 	class Win32Window : public Window
 	{
 	public:
@@ -26,15 +23,21 @@ namespace engine
 			return m_hwnd;
 		}
 
-		virtual int getWidth();
-		virtual int getHeight();
+		virtual int getWidth() const 
+		{
+			return m_width; 
+		}
+		
+		virtual int getHeight() const
+		{ 
+			return m_height; 
+		}
 		
 		bool updateMessages();
 
 	private:
 		int m_width;
 		int m_height;
-
 		HWND m_hwnd;
 		bool m_active;
 	};

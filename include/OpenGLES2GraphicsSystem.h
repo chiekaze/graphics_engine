@@ -22,10 +22,9 @@ namespace engine
 	private:
 		engine::Ref<Window> m_window;
 		bool m_active;
-
-		EGLContext m_eglContext;
-
+		
 		EGLDisplay m_eglDisplay;
+		EGLContext m_eglContext;
 		EGLSurface m_eglSurface;	
 	};
 }

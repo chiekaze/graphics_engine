@@ -2,15 +2,9 @@
 
 namespace engine
 {
-	Window::Window()
-	{
-
-	}
-
-	Window::Window(Application* app, GraphicsSystem* graphics) : 
-		Object(), 
-		m_app(app),
-		m_graphics(graphics)
+	Window::Window() : Object(), 
+		m_application(0),
+		m_graphicsSystem(0)
 	{
 	}
 
@@ -18,23 +12,23 @@ namespace engine
 	{
 	}
 
-	void Window::setApplication(Application* app)
+	void Window::setApplication(Application* application)
 	{
-		m_app = app;
+		m_application = application;
 	}
 
-	void Window::setGraphics(GraphicsSystem* graphics)
+	void Window::setGraphicsSystem(GraphicsSystem* graphicsSystem)
 	{
-		m_graphics = graphics;
+		m_graphicsSystem = graphicsSystem;
 	}
 
 	Application* Window::getApplication() const
 	{
-		return m_app;
+		return m_application;
 	}
 
 	GraphicsSystem* Window::getGraphicsSystem() const
 	{
-		return m_graphics;
+		return m_graphicsSystem;
 	}
 }

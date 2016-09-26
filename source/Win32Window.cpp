@@ -1,6 +1,5 @@
 #include <Win32Window.h>
 #include <Application.h>
-#include <GraphicsSystem.h>
 
 namespace engine
 {
@@ -11,22 +10,21 @@ namespace engine
 		switch (uMsg)
 		{
 		case WM_CREATE:
-			break;
+		break;
 			
 		case WM_PAINT:
 		{
 			Win32Window* window = (Win32Window*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
 			
-			//window->getApplication()->Update();
-			window->getApplication()->Render(window, window->getGraphicsSystem());
+			window->getApplication()->render(window, window->getGraphicsSystem());
 
 			ValidateRect(window->getNativeWindow(), NULL);
 		}
-			break;
+		break;
 
 		case WM_DESTROY:
 			PostQuitMessage(0);
-			break;
+		break;
 
 		case WM_CHAR:
 		{
@@ -34,21 +32,21 @@ namespace engine
 			Win32Window * esContext = (Win32Window*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
 			GetCursorPos(&point);
 		}
-			break;
+		break;
 
 		default:
 			lRet = DefWindowProc(hWnd, uMsg, wParam, lParam);
-			break;		
+		break;		
 		}
 
 		return lRet;	
 	}
 
-	Win32Window::Win32Window(int width, int height, const std::wstring& title) : 
-		m_hwnd(NULL), 
-		m_active(false),
+	Win32Window::Win32Window(int width, int height, const std::wstring& title) : Window(),
 		m_width(width),
-		m_height(height)
+		m_height(height),
+		m_hwnd(NULL), 
+		m_active(false)	
 	{ 
 		WNDCLASS wndClass = { 0 };
 		DWORD wStyle = 0;
@@ -64,7 +62,7 @@ namespace engine
 		if (!RegisterClass(&wndClass))
 			return; //fail
 
-		wStyle = WS_VISIBLE | WS_POPUP | WS_BORDER | WS_SYSMENU | WS_CAPTION| WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
+		wStyle = WS_VISIBLE | WS_POPUP | WS_BORDER | WS_SYSMENU | WS_CAPTION;
 
 		windowRect.left = 0;
 		windowRect.top = 0;
@@ -100,15 +98,6 @@ namespace engine
 
 	Win32Window::~Win32Window()
 	{
-	}
-	
-	int Win32Window::getWidth()
-	{
-		return m_width;
-	}
-	int Win32Window::getHeight()
-	{
-		return m_height;
 	}
 
 	bool Win32Window::updateMessages()

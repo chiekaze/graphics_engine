@@ -13,24 +13,23 @@ namespace engine
 	{
 	public:
 		Window();
-		Window(Application* app, GraphicsSystem* graphics);
 		~Window();
 
 		virtual EGLNativeDisplayType getNativeDisplay() const = 0;
 		virtual EGLNativeWindowType getNativeWindow() const = 0;
 	
-		virtual int getWidth() = 0;
-		virtual int getHeight() = 0;
+		virtual int getWidth() const = 0;
+		virtual int getHeight() const = 0;
 
-		void setApplication(Application* app);
-		void setGraphics(GraphicsSystem* graphics);
+		void setApplication(Application* application);
+		void setGraphicsSystem(GraphicsSystem* graphicsSystem);
 
 		Application* getApplication() const;
 		GraphicsSystem* getGraphicsSystem() const;
 
 	private:
-		Application* m_app;
-		GraphicsSystem* m_graphics;
+		Application* m_application;
+		GraphicsSystem* m_graphicsSystem;
 	};
 }
 
