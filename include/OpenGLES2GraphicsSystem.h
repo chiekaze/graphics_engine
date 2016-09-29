@@ -17,6 +17,8 @@ namespace engine
 		OpenGLES2GraphicsSystem(Window* window);
 		~OpenGLES2GraphicsSystem();
 
+		void createShaderProgram();
+
 		virtual void swapBuffers();
 
 	private:

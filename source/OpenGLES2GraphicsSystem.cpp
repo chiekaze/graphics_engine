@@ -64,7 +64,20 @@ namespace engine
 			return;
 		}
 
+		// Make the context current
+		if (!eglMakeCurrent(m_eglDisplay, m_eglSurface, m_eglSurface, m_eglContext))
+		{
+			return;
+		}
+
 		m_active = true;
+		//int n = eglGetError();
+		//if (n != EGL_SUCCESS)
+		//{
+		//	assert(0);
+		//}
+
+		//int num = glGetError();
 	}
 
 	OpenGLES2GraphicsSystem::~OpenGLES2GraphicsSystem()

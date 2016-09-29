@@ -17,7 +17,7 @@ namespace engine
 		{
 			return GetDC(getNativeWindow());
 		}
-
+		
 		virtual EGLNativeWindowType getNativeWindow() const
 		{
 			return m_hwnd;

@@ -9,8 +9,6 @@ namespace engine
 
 		switch (uMsg)
 		{
-		case WM_CREATE:
-		break;
 			
 		case WM_PAINT:
 		{
@@ -62,7 +60,7 @@ namespace engine
 		if (!RegisterClass(&wndClass))
 			return; //fail
 
-		wStyle = WS_VISIBLE | WS_POPUP | WS_BORDER | WS_SYSMENU | WS_CAPTION;
+		wStyle = WS_VISIBLE | WS_POPUP | WS_BORDER | WS_SYSMENU | WS_CAPTION | WS_MAXIMIZEBOX | WS_MINIMIZEBOX;
 
 		windowRect.left = 0;
 		windowRect.top = 0;

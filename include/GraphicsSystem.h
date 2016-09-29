@@ -11,6 +11,8 @@ namespace engine
 		GraphicsSystem();
 		~GraphicsSystem();
 
+		void createShaderProgram();
+
 		virtual void swapBuffers() = 0;
 	};
 }

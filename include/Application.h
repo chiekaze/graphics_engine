@@ -3,6 +3,9 @@
 
 #include <Object.h>
 
+#include <GLES2/gl2.h>
+#include <EGL/egl.h>
+
 namespace engine
 {
 	class Window;
@@ -16,9 +19,10 @@ namespace engine
 
 		bool update(float deltaTime);
 		void render(Window* window, GraphicsSystem* graphicsSystem);
-
+		
 	private:
-		float m_totalTime;
+		float m_totalTime;		
+		GLuint programObject;
 	};
 }
 
