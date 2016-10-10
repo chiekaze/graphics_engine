@@ -2,14 +2,15 @@
 #define APPLICATION_H_
 
 #include <Object.h>
-
-#include <GLES2/gl2.h>
-#include <EGL/egl.h>
+#include <Ref.h>
+#include <vector>
+#include <Shader.h>
 
 namespace engine
 {
 	class Window;
 	class GraphicsSystem;
+	class Shader;
 
 	class Application : public Object
 	{
@@ -22,7 +23,7 @@ namespace engine
 		
 	private:
 		float m_totalTime;		
-		GLuint programObject;
+		std::vector<Ref<Shader>> m_shader;
 	};
 }
 

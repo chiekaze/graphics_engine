@@ -14,7 +14,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	printf("Created window (%d, %d)\n", w, h);
 
 	engine::Ref<engine::Win32Window> window =
-		new engine::Win32Window(w, h, L"muh wundow");
+		new engine::Win32Window(w, h, L"Title");
 
 	engine::Ref<engine::OpenGLES2GraphicsSystem> graphicsSystem =
 		new engine::OpenGLES2GraphicsSystem(window);
@@ -32,8 +32,6 @@ int _tmain(int argc, _TCHAR* argv[])
 		float deltaTime = frameTimer.getTime();
 		frameTimer.reset();
 		application->update(deltaTime);
-
-		//printf("Updating...\n");
 	}
 
 	printf("Closing...\n");

@@ -1,5 +1,6 @@
 #include <OpenGLES2GraphicsSystem.h>
 #include <Win32Window.h>
+#include <Shader.h>
 
 namespace engine
 {
@@ -71,6 +72,7 @@ namespace engine
 		}
 
 		m_active = true;
+		
 		//int n = eglGetError();
 		//if (n != EGL_SUCCESS)
 		//{
@@ -82,6 +84,22 @@ namespace engine
 
 	OpenGLES2GraphicsSystem::~OpenGLES2GraphicsSystem()
 	{
+	}
+
+	void OpenGLES2GraphicsSystem::clearScreen(float red, float green, float blue)
+	{
+		glViewport(0, 0, m_window->getWidth(), m_window->getHeight());
+		glClearColor(red, green, blue, 0);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	}
+
+	void OpenGLES2GraphicsSystem::drawTriangle(Shader* shader, float vertices[], int numvertices)
+	{
+		shader->UseShader();
+
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, vertices);
+		glEnableVertexAttribArray(0);
+		glDrawArrays(GL_TRIANGLES, 0, numvertices);
 	}
 
 	void OpenGLES2GraphicsSystem::swapBuffers()

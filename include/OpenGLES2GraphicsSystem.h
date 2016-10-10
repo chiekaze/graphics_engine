@@ -17,7 +17,9 @@ namespace engine
 		OpenGLES2GraphicsSystem(Window* window);
 		~OpenGLES2GraphicsSystem();
 
-		void createShaderProgram();
+		virtual void clearScreen(float red, float green, float blue);
+		virtual void drawTriangle(Shader* shader, float vertices[], int numvertices);
+
 
 		virtual void swapBuffers();
 
