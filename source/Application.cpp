@@ -9,19 +9,26 @@ namespace engine
 	Application::Application() : Object(), 
 		m_totalTime(0.0f)
 	{
-		char VertexShader[] =
+		char VertexShader1[] =
 			"void main()										\n"
 			"{													\n"
-			"	gl_Position = vPosition;						\n"
+			"	gl_Position =  vPosition;						\n"
 			"}													\n";
 		
-		char FragmentShader[] =					
+		char FragmentShader1[] =		
+			"void main()										\n"
+			"{													\n"
+			"	gl_FragColor = vec4(1, 1, 0, 0);				\n"
+			"}													\n";
+
+		char FragmentShader2[] =
 			"void main()										\n"
 			"{													\n"
 			"	gl_FragColor = vec4(1, 0, 1, 0);				\n"
 			"}													\n";
 
-		m_shader.push_back(new Shader(VertexShader, FragmentShader));	
+		m_shader.push_back(new Shader(VertexShader1, FragmentShader1));	
+		m_shader.push_back(new Shader(VertexShader1, FragmentShader2));
 	}
 
 	Application::~Application()
@@ -39,21 +46,40 @@ namespace engine
 
 	void Application::render(Window* window, GraphicsSystem* graphicsSystem)
 	{ 
+		
 		printf("%s\n", __FUNCTION__);
+	
+		float pulse = (sin(2.0f * m_totalTime));
 
-		float puls = abs(sinf(2.0f*m_totalTime));
+		float scale = (sin(2.0f * m_totalTime));
 		
-		graphicsSystem->clearScreen(0, 1, puls);
+		graphicsSystem->clearScreen(0, 1, pulse);
 		
-		GLfloat triangle1[] = 
+
+		GLfloat square[] =
+		{
+			-0.75f * scale, -0.75f * scale, 0.0f,
+			0.75f * scale, -0.75f * scale, 0.0f,
+			0.75f * scale, 0.75f * scale, 0.0f,
+
+			0.75f * scale, 0.75f * scale, 0.0f,
+			-0.75f * scale, 0.75f * scale, 0.0f,
+			-0.75f * scale, -0.75f * scale, 0.0f,
+		};
+
+		GLfloat triangle[] =
 		{
 			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.0f,  0.5f, 0.0f,
+			0.5f, -0.5f, 0.0f,
+			0.0f, 0.5f, 0.0f,
 		};
+
+		graphicsSystem->drawTriangle(m_shader[0], square, 6);
+		graphicsSystem->drawTriangle(m_shader[1], triangle, 3);
 		
-		graphicsSystem->drawTriangle(m_shader[0], triangle1, 3);
 		graphicsSystem->swapBuffers();	
+	
+
 	}
 }
 

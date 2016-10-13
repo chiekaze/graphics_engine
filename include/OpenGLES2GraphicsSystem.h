@@ -20,7 +20,6 @@ namespace engine
 		virtual void clearScreen(float red, float green, float blue);
 		virtual void drawTriangle(Shader* shader, float vertices[], int numvertices);
 
-
 		virtual void swapBuffers();
 
 	private:

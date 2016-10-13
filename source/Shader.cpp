@@ -45,6 +45,8 @@ namespace engine
 			glDeleteProgram(m_programObject);
 			return;
 		}
+		
+	
 
 	}
 
@@ -87,7 +89,6 @@ namespace engine
 				glGetShaderInfoLog(shader, infoLen, NULL, infoLog);
 				printf("ERROR!\n");
 				free(infoLog);
-				//assert(0);
 			}
 
 			glDeleteShader(shader);
