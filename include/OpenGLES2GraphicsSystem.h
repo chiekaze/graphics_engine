@@ -18,7 +18,8 @@ namespace engine
 		~OpenGLES2GraphicsSystem();
 
 		virtual void clearScreen(float red, float green, float blue);
-		virtual void drawTriangle(Shader* shader, float vertices[], int numvertices);
+		//virtual void drawTriangle(Shader* shader, float vertices[], int numvertices);
+		virtual void drawTriangle(Shader* shader, Texture* texture, float textureCoords[], float vertices[], int numvertices);
 
 		virtual void swapBuffers();
 

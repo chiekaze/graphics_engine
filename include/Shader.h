@@ -2,8 +2,8 @@
 #define SHADER_H_
 
 #include <Object.h>
-#include <GLES2\gl2.h>
-#include <EGL\egl.h>
+#include <GLES2/gl2.h>
+#include <EGL/egl.h>
 
 namespace engine
 {

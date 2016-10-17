@@ -1,6 +1,7 @@
 #include <OpenGLES2GraphicsSystem.h>
 #include <Win32Window.h>
 #include <Shader.h>
+#include <Texture.h>
 
 namespace engine
 {
@@ -93,12 +94,24 @@ namespace engine
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
-	void OpenGLES2GraphicsSystem::drawTriangle(Shader* shader, float vertices[], int numvertices)
+	void OpenGLES2GraphicsSystem::drawTriangle(Shader* shader, Texture* texture, float textureCoords[], float vertices[], int numvertices)
 	{
 		shader->UseShader();
 
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, vertices);
 		glEnableVertexAttribArray(0);
+
+		// Set texture coordinates
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, textureCoords);
+		glEnableVertexAttribArray(1);
+		
+		// Bind texture
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texture->getTextureID());
+		
+		// Set the sampler texture unit to 0
+		glUniform1i(shader->getUniformLocation("texture"), 0);
+
 		glDrawArrays(GL_TRIANGLES, 0, numvertices);
 	}
 
