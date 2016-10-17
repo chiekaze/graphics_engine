@@ -40,7 +40,6 @@ namespace engine
 		printf("%s\n", __FUNCTION__);
 		
 		m_totalTime += deltaTime;
-	
 		return true;
 	}
 
@@ -49,29 +48,29 @@ namespace engine
 		
 		printf("%s\n", __FUNCTION__);
 	
-		float pulse = (sin(2.0f * m_totalTime));
+		float pulse = (sinf(2.0f * m_totalTime));
 
-		float scale = (sin(2.0f * m_totalTime));
+		float scale = abs(cosf(2.0f * m_totalTime));
 		
 		graphicsSystem->clearScreen(0, 1, pulse);
 		
 
 		GLfloat square[] =
 		{
-			-0.75f * scale, -0.75f * scale, 0.0f,
-			0.75f * scale, -0.75f * scale, 0.0f,
-			0.75f * scale, 0.75f * scale, 0.0f,
+			-1 * (sinf(m_totalTime)), -1 * (cosf(m_totalTime)), 0.0f,
+			1 * (cosf(m_totalTime)), -1 * (sinf(m_totalTime)), 0.0f,
+			1 * (sinf(m_totalTime)), 1 * (cosf(m_totalTime)), 0.0f,
 
-			0.75f * scale, 0.75f * scale, 0.0f,
-			-0.75f * scale, 0.75f * scale, 0.0f,
-			-0.75f * scale, -0.75f * scale, 0.0f,
+			1 * (sinf(m_totalTime)), 1 * (cosf(m_totalTime)), 0.0f,
+			-1 * (cosf(m_totalTime)), 1 * (sinf(m_totalTime)), 0.0f,
+			-1 * (sinf(m_totalTime)), -1 * (cosf(m_totalTime)), 0.0f,
 		};
 
 		GLfloat triangle[] =
 		{
-			-0.5f, -0.5f, 0.0f,
-			0.5f, -0.5f, 0.0f,
-			0.0f, 0.5f, 0.0f,
+			-0.5f * scale, -0.5f * scale, 0.0f,
+			0.5f * scale, -0.5f * scale, 0.0f,
+			0.0f, 0.5f * scale, 0.0f,
 		};
 
 		graphicsSystem->drawTriangle(m_shader[0], square, 6);
