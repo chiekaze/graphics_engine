@@ -41,8 +41,6 @@ namespace engine
 	}
 
 	Win32Window::Win32Window(int width, int height, const std::wstring& title) : Window(),
-		m_width(width),
-		m_height(height),
 		m_hwnd(NULL), 
 		m_active(false)	
 	{ 
@@ -96,6 +94,11 @@ namespace engine
 
 	Win32Window::~Win32Window()
 	{
+	}
+
+	EGLNativeWindowType Win32Window::getNativeWindow() const
+	{
+		return m_hwnd;
 	}
 
 	bool Win32Window::updateMessages()

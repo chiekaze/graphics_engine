@@ -45,9 +45,6 @@ namespace engine
 			glDeleteProgram(m_programObject);
 			return;
 		}
-		
-	
-
 	}
 
 	Shader::~Shader()

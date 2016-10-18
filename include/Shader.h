@@ -3,7 +3,6 @@
 
 #include <Object.h>
 #include <GLES2/gl2.h>
-#include <EGL/egl.h>
 
 namespace engine
 {
@@ -22,5 +21,5 @@ namespace engine
 	};
 }
 
-#endif;
+#endif
 

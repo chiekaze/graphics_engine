@@ -13,34 +13,34 @@ namespace engine
 		Win32Window(int width, int height, const std::wstring& title);
 		~Win32Window();
 
-		virtual EGLNativeDisplayType getNativeDisplay() const
-		{
-			return GetDC(getNativeWindow());
-		}
+		//virtual EGLNativeDisplayType getNativeDisplay() const
+		//{
+		//	return GetDC(getNativeWindow());
+		//}
 		
-		virtual EGLNativeWindowType getNativeWindow() const
-		{
-			return m_hwnd;
-		}
+		virtual EGLNativeWindowType getNativeWindow() const;
+		//{
+		//	return m_hwnd;
+		//}
 
-		virtual int getWidth() const 
-		{
-			return m_width; 
-		}
-		
-		virtual int getHeight() const
-		{ 
-			return m_height; 
-		}
+		//virtual int getWidth() const 
+		//{
+		//	return m_width; 
+		//}
+		//
+		//virtual int getHeight() const
+		//{ 
+		//	return m_height; 
+		//}
 		
 		bool updateMessages();
 
 	private:
-		int m_width;
-		int m_height;
+		//int m_width;
+		//int m_height;
 		HWND m_hwnd;
 		bool m_active;
 	};
 }
 
-#endif;
+#endif

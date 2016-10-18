@@ -30,6 +30,5 @@ namespace engine
 	
 	Texture::~Texture()
 	{
-
 	}
 }

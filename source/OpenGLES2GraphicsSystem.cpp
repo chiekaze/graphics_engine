@@ -1,7 +1,8 @@
 #include <OpenGLES2GraphicsSystem.h>
-#include <Win32Window.h>
+#include <Window.h>
 #include <Shader.h>
 #include <Texture.h>
+#include <initializer_list>
 
 namespace engine
 {
@@ -22,54 +23,67 @@ namespace engine
 			EGL_NONE
 		};
 
+		EGLint w, h, format;
 		EGLint numConfigs;
-		EGLint majorVersion;
-		EGLint minorVersion;
 		EGLConfig config;
 		
-		EGLint contextAtrribs[] = {
-			EGL_CONTEXT_CLIENT_VERSION, 2, 
-			EGL_NONE, 
-			EGL_NONE 
-		};
-
-		m_eglDisplay = eglGetDisplay(window->getNativeDisplay());	
-		if (m_eglDisplay == EGL_NO_DISPLAY)
+		m_eglDisplay = eglGetDisplay(EGL_DEFAULT_DISPLAY);
+		
+		eglInitialize(m_eglDisplay, 0, 0);
+		
+		// Here, the application chooses the configuration it desires.
+		// find the best match if possible, otherwise use the very first one
+		eglChooseConfig(m_eglDisplay, attribList, nullptr, 0, &numConfigs);
+		EGLConfig* supportedConfigs = new EGLConfig[numConfigs];
+		assert(supportedConfigs);
+		eglChooseConfig(m_eglDisplay, attribList, supportedConfigs, numConfigs, &numConfigs);
+		assert(numConfigs);
+		int i = 0;
+		
+		for (; i < numConfigs; i++)
 		{
-			return;
+			EGLConfig& cfg = supportedConfigs[i];
+			EGLint r, g, b, d;
+			if (eglGetConfigAttrib(m_eglDisplay, cfg, EGL_RED_SIZE, &r) &&
+				eglGetConfigAttrib(m_eglDisplay, cfg, EGL_GREEN_SIZE, &g) &&
+				eglGetConfigAttrib(m_eglDisplay, cfg, EGL_BLUE_SIZE, &b) &&
+				eglGetConfigAttrib(m_eglDisplay, cfg, EGL_DEPTH_SIZE, &d) &&
+				r == 8 && g == 8 && b == 8 && d == 0) 
+			{ 
+				config = supportedConfigs[i];
+				break;
+			}
 		}
-
-		if (!eglInitialize(m_eglDisplay, &majorVersion, &minorVersion))
-		{
-			return;
-		}
-
-		if (!eglGetConfigs(m_eglDisplay, NULL, 0, &numConfigs))
-		{
-			return;
-		}
-
-		if (!eglChooseConfig(m_eglDisplay, attribList, &config, 1, &numConfigs))
-		{
-			return;
-		}
-
+			if (i == numConfigs) 
+			{
+				config = supportedConfigs[0];
+			} 
+	
+		// EGL_NATIVE_VISUAL_ID is an attribute of the EGLConfig that is
+	    // guaranteed to be accepted by ANativeWindow_setBuffersGeometry().
+	    // As soon as we picked a EGLConfig, we can safely reconfigure the
+	    // ANativeWindow buffers to match, using EGL_NATIVE_VISUAL_ID.
+		eglGetConfigAttrib(m_eglDisplay, config, EGL_NATIVE_VISUAL_ID, &format);
 		m_eglSurface = eglCreateWindowSurface(m_eglDisplay, config, window->getNativeWindow(), NULL);
-		if (m_eglSurface == EGL_NO_SURFACE)
+		EGLint contextAttribs[] = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE, EGL_NONE };
+		m_eglContext = eglCreateContext(m_eglDisplay, config, NULL, contextAttribs);
+	
+		if (eglMakeCurrent(m_eglDisplay, m_eglSurface, m_eglSurface, m_eglContext) == EGL_FALSE)
 		{
-			return;
+			assert(0);//LOGW("Unable to eglMakeCurrent");
 		}
-
-		m_eglContext = eglCreateContext(m_eglDisplay, config, EGL_NO_CONTEXT, contextAtrribs);
-		if (m_eglContext == EGL_NO_CONTEXT)
+	
+		// Get size of the surface
+		eglQuerySurface(m_eglDisplay, m_eglSurface, EGL_WIDTH, &w);
+		eglQuerySurface(m_eglDisplay, m_eglSurface, EGL_HEIGHT, &h);
+		window->setSize(w, h);
+	
+		// Check openGL on the system
+		auto opengl_info = { GL_VENDOR, GL_RENDERER, GL_VERSION, GL_EXTENSIONS };
+		for (auto name : opengl_info) 
 		{
-			return;
-		}
-
-		// Make the context current
-		if (!eglMakeCurrent(m_eglDisplay, m_eglSurface, m_eglSurface, m_eglContext))
-		{
-			return;
+			auto info = glGetString(name);
+			//LOGI("OpenGL Info: %s", info);
 		}
 
 		m_active = true;

@@ -12,6 +12,22 @@ namespace engine
 	{
 	}
 
+	int Window::getWidth() const
+	{
+		return m_width;
+	}
+
+	int Window::getHeight() const
+	{
+		return m_height;
+	}
+
+	void Window::setSize(int w, int h)
+	{
+		m_width = w;
+		m_height = h;
+	}
+
 	void Window::setApplication(Application* application)
 	{
 		m_application = application;
