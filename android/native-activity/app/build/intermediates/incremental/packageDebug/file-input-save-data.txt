@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Oct 18 13:47:27 EEST 2016
+#Tue Oct 18 13:57:40 EEST 2016
 122.file=C\:\\Users\\juhovai\\Desktop\\graphics\\graphics_engine\\android\\native-activity\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\abc_dialog_material_background_dark.xml
 60.set=ANDROID_RESOURCE
 129.file=C\:\\Users\\juhovai\\Desktop\\graphics\\graphics_engine\\android\\native-activity\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\abc_ic_star_half_black_16dp.png
