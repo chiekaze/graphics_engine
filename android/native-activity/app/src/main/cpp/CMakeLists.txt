@@ -26,17 +26,19 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
 add_library(native-activity SHARED
             ../../../../../../source/Object.cpp
             ../../../../../../source/ElapsedTimer.cpp
-            ../../../../../../source/Window.cpp
             ../../../../../../source/GraphicsSystem.cpp
             ../../../../../../source/OpenGLES2GraphicsSystem.cpp
+            ../../../../../../source/Window.cpp
             ../../../../../../source/Shader.cpp
             ../../../../../../source/Texture.cpp
             ../../../../../../source/Application.cpp
-            ../../../../../../source/AndroidWindow.cpp
+            ../../../../../../source/android/AndroidWindow.cpp
             main.cpp)
 
 target_include_directories(native-activity PRIVATE
-                           ../../../../../../include
+                            ../../../../../../include
+                           ../../../../../../include/android
+                           ../../../../../../include/win32
                            ${ANDROID_NDK}/sources/android/native_app_glue)
 
 # add lib dependencies

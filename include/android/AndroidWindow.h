@@ -1,5 +1,5 @@
-#ifndef ANDROID_H_
-#define ANDROID_H_
+#ifndef ANDROID_WINDOW_H
+#define ANDROID_WINDOW_H
 
 #include <Window.h>
 

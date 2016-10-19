@@ -1,10 +1,10 @@
-#ifndef OPENGLES2_GRAPHICS_SYSTEM_H_
-#define OPENGLES2_GRAPHICS_SYSTEM_H_
+#ifndef OPENGLES2_GRAPHICS_SYSTEM_H
+#define OPENGLES2_GRAPHICS_SYSTEM_H
 
+#include <Window.h>
 #include <GraphicsSystem.h>
 #include <Ref.h>
 
-#include <GLES2/gl2.h>
 #include <EGL/egl.h>
 
 namespace engine
@@ -19,7 +19,7 @@ namespace engine
 
 		virtual void clearScreen(float red, float green, float blue);
 		//virtual void drawTriangle(Shader* shader, float vertices[], int numvertices);
-		virtual void drawTriangle(Shader* shader, Texture* texture, float textureCoords[], float vertices[], int numvertices);
+		virtual void drawTriangle(Shader* shader, Texture* texture, float textCords[], float vertices[], int numVertices);
 
 		virtual void swapBuffers();
 

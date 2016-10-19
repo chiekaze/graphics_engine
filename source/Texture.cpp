@@ -1,5 +1,4 @@
 #include <Texture.h>
-#include <GLES2/gl2.h>
 #include <malloc.h>
 #include <stdio.h>
 
@@ -30,5 +29,10 @@ namespace engine
 	
 	Texture::~Texture()
 	{
+	}
+
+	GLuint Texture::getTextureID() const
+	{
+		return m_textureID;
 	}
 }

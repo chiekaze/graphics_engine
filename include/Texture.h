@@ -9,16 +9,11 @@ namespace engine
 	class Texture : public Object
 	{
 	public:
-		
-		// Constructs and compiles new shader from given vertex and fragment shaders sources.
 		Texture(int width, int height, int bytesPerPixel, const GLubyte* pixels);
 		~Texture();
 
-		GLuint getTextureID() const
-		{
-			return m_textureID;
-		}
-	
+		GLuint getTextureID() const;
+
 	private:
 		GLuint m_textureID;
 	};

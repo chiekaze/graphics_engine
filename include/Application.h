@@ -1,5 +1,5 @@
-#ifndef APPLICATION_H_
-#define APPLICATION_H_
+#ifndef APPLICATION_H
+#define APPLICATION_H
 
 #include <Object.h>
 #include <Ref.h>
@@ -25,6 +25,7 @@ namespace engine
 		
 	private:
 		float m_totalTime;		
+		
 		std::vector<Ref<Shader>> m_shader;
 		std::vector<Ref<Texture>> m_texture;
 	};

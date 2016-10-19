@@ -48,7 +48,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\include/win32/;${ANDROID_NDK}/sources/android/native_app_glue;$(ProjectDir)..\include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\include;$(ProjectDir)..\include/win32;$(ProjectDir)..\include/android;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -77,31 +77,37 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\AndroidWindow.h" />
+    <ClInclude Include="..\include\android\AndroidFile.h" />
+    <ClInclude Include="..\include\android\AndroidWindow.h" />
     <ClInclude Include="..\include\Application.h" />
     <ClInclude Include="..\include\ElapsedTimer.h" />
+    <ClInclude Include="..\include\File.h" />
     <ClInclude Include="..\include\GraphicsSystem.h" />
     <ClInclude Include="..\include\Object.h" />
     <ClInclude Include="..\include\OpenGLES2GraphicsSystem.h" />
     <ClInclude Include="..\include\Ref.h" />
     <ClInclude Include="..\include\Shader.h" />
     <ClInclude Include="..\include\Texture.h" />
-    <ClInclude Include="..\include\Win32Window.h" />
+    <ClInclude Include="..\include\win32\Win32File.h" />
+    <ClInclude Include="..\include\win32\Win32Window.h" />
     <ClInclude Include="..\include\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\include\Ref.inl" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\source\AndroidWindow.cpp" />
+    <ClCompile Include="..\source\android\AndroidFile.cpp" />
+    <ClCompile Include="..\source\android\AndroidWindow.cpp" />
     <ClCompile Include="..\source\Application.cpp" />
     <ClCompile Include="..\source\ElapsedTimer.cpp" />
+    <ClCompile Include="..\source\File.cpp" />
     <ClCompile Include="..\source\GraphicsSystem.cpp" />
     <ClCompile Include="..\source\Object.cpp" />
     <ClCompile Include="..\source\OpenGLES2GraphicsSystem.cpp" />
     <ClCompile Include="..\source\Shader.cpp" />
     <ClCompile Include="..\source\Texture.cpp" />
-    <ClCompile Include="..\source\Win32Window.cpp" />
+    <ClCompile Include="..\source\win32\Win32File.cpp" />
+    <ClCompile Include="..\source\win32\Win32Window.cpp" />
     <ClCompile Include="..\source\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

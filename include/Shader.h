@@ -1,5 +1,5 @@
-#ifndef SHADER_H_
-#define SHADER_H_
+#ifndef SHADER_H
+#define SHADER_H
 
 #include <Object.h>
 #include <GLES2/gl2.h>

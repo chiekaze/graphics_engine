@@ -1,7 +1,7 @@
 #include <OpenGLES2GraphicsSystem.h>
-#include <Window.h>
 #include <Shader.h>
 #include <Texture.h>
+
 #include <initializer_list>
 
 namespace engine
@@ -31,8 +31,8 @@ namespace engine
 		
 		eglInitialize(m_eglDisplay, 0, 0);
 		
-		// Here, the application chooses the configuration it desires.
-		// find the best match if possible, otherwise use the very first one
+		//Here, the application chooses the configuration it desires.
+		//find the best match if possible, otherwise use the very first one
 		eglChooseConfig(m_eglDisplay, attribList, nullptr, 0, &numConfigs);
 		EGLConfig* supportedConfigs = new EGLConfig[numConfigs];
 		assert(supportedConfigs);
@@ -59,10 +59,10 @@ namespace engine
 				config = supportedConfigs[0];
 			} 
 	
-		// EGL_NATIVE_VISUAL_ID is an attribute of the EGLConfig that is
-	    // guaranteed to be accepted by ANativeWindow_setBuffersGeometry().
-	    // As soon as we picked a EGLConfig, we can safely reconfigure the
-	    // ANativeWindow buffers to match, using EGL_NATIVE_VISUAL_ID.
+		//EGL_NATIVE_VISUAL_ID is an attribute of the EGLConfig that is
+	    //guaranteed to be accepted by ANativeWindow_setBuffersGeometry().
+	    //As soon as we picked a EGLConfig, we can safely reconfigure the
+	    //ANativeWindow buffers to match, using EGL_NATIVE_VISUAL_ID.
 		eglGetConfigAttrib(m_eglDisplay, config, EGL_NATIVE_VISUAL_ID, &format);
 		m_eglSurface = eglCreateWindowSurface(m_eglDisplay, config, window->getNativeWindow(), NULL);
 		EGLint contextAttribs[] = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE, EGL_NONE };
@@ -73,12 +73,12 @@ namespace engine
 			assert(0);//LOGW("Unable to eglMakeCurrent");
 		}
 	
-		// Get size of the surface
+		//Get size of the surface
 		eglQuerySurface(m_eglDisplay, m_eglSurface, EGL_WIDTH, &w);
 		eglQuerySurface(m_eglDisplay, m_eglSurface, EGL_HEIGHT, &h);
 		window->setSize(w, h);
 	
-		// Check openGL on the system
+		//Check openGL on the system
 		auto opengl_info = { GL_VENDOR, GL_RENDERER, GL_VERSION, GL_EXTENSIONS };
 		for (auto name : opengl_info) 
 		{
@@ -108,25 +108,25 @@ namespace engine
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
-	void OpenGLES2GraphicsSystem::drawTriangle(Shader* shader, Texture* texture, float textureCoords[], float vertices[], int numvertices)
+	void OpenGLES2GraphicsSystem::drawTriangle(Shader* shader, Texture* texture, float textCords[], float vertices[], int numVertices)
 	{
 		shader->UseShader();
 
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, vertices);
 		glEnableVertexAttribArray(0);
 
-		// Set texture coordinates
-		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, textureCoords);
+		//Set texture coordinates
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, textCords);
 		glEnableVertexAttribArray(1);
 		
-		// Bind texture
+		//Bind texture
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, texture->getTextureID());
 		
-		// Set the sampler texture unit to 0
+		//Set the sampler texture unit to 0
 		glUniform1i(shader->getUniformLocation("texture"), 0);
 
-		glDrawArrays(GL_TRIANGLES, 0, numvertices);
+		glDrawArrays(GL_TRIANGLES, 0, numVertices);
 	}
 
 	void OpenGLES2GraphicsSystem::swapBuffers()

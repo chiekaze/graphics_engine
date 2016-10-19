@@ -27,13 +27,11 @@
 #include <android/sensor.h>
 #include <android/log.h>
 #include <android_native_app_glue.h>
-
+#include <Window.h>
 #include <OpenGLES2GraphicsSystem.h>
 #include <Application.h>
-#include <Window.h>
 #include <ElapsedTimer.h>
 #include <AndroidWindow.h>
-
 
 
 
@@ -41,7 +39,6 @@
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "native-activity", __VA_ARGS__))
 
 //Our saved state data.
-
 struct saved_state
 {
     float angle;
@@ -50,7 +47,6 @@ struct saved_state
 };
 
 //Shared state for our app.
-
 struct AndroidEngine
 {
     struct android_app* app;
@@ -69,16 +65,21 @@ struct AndroidEngine
     engine::Ref<engine::Window> window;
     engine::Ref<engine::ElapsedTimer> frameTimer;
 
+
+    //File reading.
+    //AAssetManager* assetManager = app->activity->assetManager;
+    //AAsset* file = AAssetManager_open(assetManager, fileName, AASSET_MODE_BUFFER);
+
     struct saved_state state;
 };
 
 //Initialize an EGL context for the current display.
-
 static int engine_init_display(struct AndroidEngine* androidEngine)
 {
     androidEngine->window = new engine::AndroidWindow(androidEngine->app->window);
     androidEngine->graphicsSystem = new engine::OpenGLES2GraphicsSystem(androidEngine->window);
     androidEngine->application = new engine::Application();
+
     androidEngine->frameTimer = new engine::ElapsedTimer();
     androidEngine->frameTimer->reset();
 
@@ -95,8 +96,9 @@ static void engine_draw_frame(struct AndroidEngine* androidEngine)
 
     float deltaTime = androidEngine->frameTimer->getTime();
     androidEngine->frameTimer->reset();
+
     androidEngine->application->update(deltaTime);
-    androidEngine->application->render(androidEngine->window,androidEngine->graphicsSystem);
+    androidEngine->application->render(androidEngine->window, androidEngine->graphicsSystem);
 
 //    if (androidEngine->display == NULL)
 //    {
@@ -237,7 +239,6 @@ void android_main(struct android_app* state)
     }
 
     //Loop waiting for stuff to do.
-
     while (1)
     {
         // Read all pending events.
@@ -251,7 +252,6 @@ void android_main(struct android_app* state)
         while ((ident=ALooper_pollAll(androidEngine.animating ? 0 : -1, NULL, &events,
                                       (void**)&source)) >= 0)
         {
-
             //Process this event.
             if (source != NULL)
             {
