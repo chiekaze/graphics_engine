@@ -2,6 +2,9 @@
 #include <Shader.h>
 #include <Texture.h>
 
+#include <EGL/egl.h>
+#include <GLES2/gl2.h>
+
 #include <initializer_list>
 
 namespace engine
@@ -25,7 +28,7 @@ namespace engine
 
 		EGLint w, h, format;
 		EGLint numConfigs;
-		EGLConfig config;
+		EGLConfig config = NULL;
 		
 		m_eglDisplay = eglGetDisplay(EGL_DEFAULT_DISPLAY);
 		
@@ -54,15 +57,17 @@ namespace engine
 				break;
 			}
 		}
-			if (i == numConfigs) 
-			{
-				config = supportedConfigs[0];
-			} 
+		
+		if (i == numConfigs) 
+		{
+			config = supportedConfigs[0];
+		} 
 	
 		//EGL_NATIVE_VISUAL_ID is an attribute of the EGLConfig that is
 	    //guaranteed to be accepted by ANativeWindow_setBuffersGeometry().
 	    //As soon as we picked a EGLConfig, we can safely reconfigure the
 	    //ANativeWindow buffers to match, using EGL_NATIVE_VISUAL_ID.
+
 		eglGetConfigAttrib(m_eglDisplay, config, EGL_NATIVE_VISUAL_ID, &format);
 		m_eglSurface = eglCreateWindowSurface(m_eglDisplay, config, window->getNativeWindow(), NULL);
 		EGLint contextAttribs[] = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE, EGL_NONE };
@@ -70,7 +75,8 @@ namespace engine
 	
 		if (eglMakeCurrent(m_eglDisplay, m_eglSurface, m_eglSurface, m_eglContext) == EGL_FALSE)
 		{
-			assert(0);//LOGW("Unable to eglMakeCurrent");
+			assert(0);
+			//LOGW("Unable to eglMakeCurrent");
 		}
 	
 		//Get size of the surface

@@ -116,7 +116,7 @@ namespace engine
 			-0.5f * cosi2,  0.5f * sini2, 0.0f,
 			-0.5f * sini2, -0.5f * cosi2, 0.0f,
 		};
-		
+
 		//texture cordinates
 		float textCords[] = 
 		{

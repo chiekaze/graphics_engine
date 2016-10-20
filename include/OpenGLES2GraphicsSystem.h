@@ -6,6 +6,7 @@
 #include <Ref.h>
 
 #include <EGL/egl.h>
+#include <GLES2/gl2.h>
 
 namespace engine
 {
@@ -30,6 +31,7 @@ namespace engine
 		EGLDisplay m_eglDisplay;
 		EGLContext m_eglContext;
 		EGLSurface m_eglSurface;	
+		
 	};
 }
 
